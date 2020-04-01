@@ -30,9 +30,9 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/<start>"
+        f"/api/v1.0/start"
         f"- Minimum temperature, the average temperature, and the max temperature for a given start day<br/>"
-        f"/api/v1.0/<start>/<end>"
+        f"/api/v1.0/start/end"
         f"- Minimum temperature, the average temperature, and the max temperature for a given start-end range<br/>"
     )
 
@@ -76,41 +76,26 @@ def tobs():
        
         tobs_list.append(tobs_dict)
     return jsonify(tobs_list)
-@app.route("/api/v1.0/start")
+
 
 
 @app.route("/api/v1.0/<start>")
-def start_temp(start):
-    # get the min/avg/max
-    temp_data = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start).all()
+@app.route("/api/v1.0/<start>/<end>")
+    
+def start_temp(start, end=None):
+    temp_data = None
+    if end:
+        temp_data = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+        filter(Measurement.date >= start).filter(Measurement.date <= end).all()
+    else:
+        temp_data = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start).all()
+    
     session.close()
+    
+    # get the min/avg/max
+    
 
     return jsonify(temp_data)
-@app.route("/api/v1.0/<start>/<end>")
-
-def start_end_trip(start_date, end_date):
-
-	start_end_trip_temps = []
-
-	results_min = session.query(func.min(Measurement.tobs)).filter(Measurement.date == start_date, Measurement.date == end_date).all()
-	results_max = session.query(func.max(Measurement.tobs)).filter(Measurement.date == start_date, Measurement.date == end_date).all()
-	results_avg = session.query(func.avg(Measurement.tobs)).filter(Measurement.date == start_date, Measurement.date == end_date).all()
-
-	start_end_trip_temps = list(np.ravel(results_min,results_max, results_avg))
-
-	return jsonify(start_end_trip_temps)
-
-def start_end_trip(start_date, end_date):
-
-	trip_temps = []
-
-	results_min = session.query(func.min(Measurement.tobs)).filter(Measurement.date >= start_date, Measurement.date >= end_date).all()
-	results_max = session.query(func.max(Measurement.tobs)).filter(Measurement.date >= start_date, Measurement.date >= end_date).all()
-	results_avg = session.query(func.avg(Measurement.tobs)).filter(Measurement.date >= start_date, Measurement.date >= end_date).all()
-
-	trip_temps = list(np.ravel(results_min,results_max, results_avg))
-
-	return jsonify(trip_temps)
 
 
 
