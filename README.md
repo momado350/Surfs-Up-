@@ -1,32 +1,34 @@
-# SQLAlchemy Homework - Surfs Up!
+## SQLAlchemy - Surfs Up! Project
 
-### Before You Begin
+#  Project requirement
+Before I start the Project I did the Following:
+1. Created a new repository for this project called `sqlalchemy-challenge`. 
 
-1. Create a new repository for this project called `sqlalchemy-challenge`. **Do not add this homework to an existing repository**.
+2. Cloned the new repository to my local computer.
 
-2. Clone the new repository to your computer.
+3. Added Jupyter notebook and `app.py` . These will be the main scripts to run for analysis.
 
-3. Add your Jupyter notebook and `app.py` to this folder. These will be the main scripts to run for analysis.
-
-4. Push the above changes to GitHub or GitLab.
+4. Pushed all changes to GitHub.
 
 ![surfs-up.png](Images/surfs-up.png)
 
-Congratulations! You've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii! To help with your trip planning, you need to do some climate analysis on the area. The following outlines what you need to do.
+## Project Story
+ I've decided to treat myself to a long holiday vacation in Honolulu, Hawaii! To help with my trip planning, I needed to do some climate analysis on the area. The following outlines what I need to do.
 
 ## Step 1 - Climate Analysis and Exploration
 
-To begin, use Python and SQLAlchemy to do basic climate analysis and data exploration of your climate database. All of the following analysis should be completed using SQLAlchemy ORM queries, Pandas, and Matplotlib.
+To begin,I used Python and SQLAlchemy to do basic climate analysis and data exploration of my climate database. All of the following analysis completed using SQLAlchemy ORM queries, Pandas, and Matplotlib.
 
-* Use the provided [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite) files to complete your climate analysis and data exploration.
+* I Used [hawaii.sqlite](Resources/hawaii.sqlite) files to complete my climate analysis and data exploration.
 
-* Choose a start date and end date for your trip. Make sure that your vacation range is approximately 3-15 days total.
+* I picked a start date and end date for the trip. 
 
-* Use SQLAlchemy `create_engine` to connect to your sqlite database.
+* I Used SQLAlchemy `create_engine` to connect to my sqlite database.
 
-* Use SQLAlchemy `automap_base()` to reflect your tables into classes and save a reference to those classes called `Station` and `Measurement`.
+* I Usee SQLAlchemy `automap_base()` to reflect the tables into classes and save a reference to those classes called `Station` and `Measurement`.
 
 ### Precipitation Analysis
+For this Analyis I followed thses steps:
 
 * Design a query to retrieve the last 12 months of precipitation data.
 
@@ -43,6 +45,7 @@ To begin, use Python and SQLAlchemy to do basic climate analysis and data explor
 * Use Pandas to print the summary statistics for the precipitation data.
 
 ### Station Analysis
+for this one I followed these steps:
 
 * Design a query to calculate the total number of stations.
 
@@ -52,7 +55,7 @@ To begin, use Python and SQLAlchemy to do basic climate analysis and data explor
 
   * Which station has the highest number of observations?
 
-  * Hint: You may need to use functions such as `func.min`, `func.max`, `func.avg`, and `func.count` in your queries.
+  * use these functions `func.min`, `func.max`, `func.avg`, and `func.count` in the  queries.
 
 * Design a query to retrieve the last 12 months of temperature observation data (TOBS).
 
@@ -66,11 +69,11 @@ To begin, use Python and SQLAlchemy to do basic climate analysis and data explor
 
 ## Step 2 - Climate App
 
-Now that you have completed your initial analysis, design a Flask API based on the queries that you have just developed.
+Now that I have completed the initial analysis, it is time to design a Flask API based on the queries that I have just developed.
 
-* Use Flask to create your routes.
+* then Used Flask to create the routes.
 
-### Routes
+### Application Routes
 
 * `/`
 
@@ -82,7 +85,7 @@ Now that you have completed your initial analysis, design a Flask API based on t
 
   * Convert the query results to a dictionary using `date` as the key and `prcp` as the value.
 
-  * Return the JSON representation of your dictionary.
+  * Return the JSON representation of the dictionary.
 
 * `/api/v1.0/stations`
 
@@ -101,35 +104,22 @@ Now that you have completed your initial analysis, design a Flask API based on t
 
   * When given the start and the end date, calculate the `TMIN`, `TAVG`, and `TMAX` for dates between the start and end date inclusive.
 
-## Hints
 
-* You will need to join the station and measurement tables for some of the queries.
+
 
 * Use Flask `jsonify` to convert your API data into a valid JSON response object.
 
 - - -
 
-## Bonus: Other Recommended Analyses
 
-* The following are optional challenge queries. These are highly recommended to attempt, but not required for the homework.
 
-### Temperature Analysis I
+### Temperature Analysis 
 
-* Hawaii is reputed to enjoy mild weather all year. Is there a meaningful difference between the temperature in, for example, June and December?
+* I have Used a function called `calc_temps` that will accept a start date and end date in the format `%Y-%m-%d`. The function will return the minimum, average, and maximum temperatures for that range of dates.
 
-* You may either use SQLAlchemy or pandas's `read_csv()` to perform this portion.
+* Used The `calc_temps` function to calculate the min, avg, and max temperatures for the trip using the matching dates from the previous year.
 
-* Identify the average temperature in June at all stations across all available years in the dataset. Do the same for December temperature.
-
-* Use the t-test to determine whether the difference in the means, if any, is statistically significant. Will you use a paired t-test, or an unpaired t-test? Why?
-
-### Temperature Analysis II
-
-* The starter notebook contains a function called `calc_temps` that will accept a start date and end date in the format `%Y-%m-%d`. The function will return the minimum, average, and maximum temperatures for that range of dates.
-
-* Use the `calc_temps` function to calculate the min, avg, and max temperatures for your trip using the matching dates from the previous year (i.e., use "2017-01-01" if your trip start date was "2018-01-01").
-
-* Plot the min, avg, and max temperature from your previous query as a bar chart.
+* Plot the min, avg, and max temperature from  previous query as a bar chart.
 
   * Use the average temperature as the bar height.
 
@@ -138,14 +128,15 @@ Now that you have completed your initial analysis, design a Flask API based on t
     ![temperature](Images/temperature.png)
 
 ### Daily Rainfall Average
+ for These Analysis these steps were followed:
 
 * Calculate the rainfall per weather station using the previous year's matching dates.
 
 * Calculate the daily normals. Normals are the averages for the min, avg, and max temperatures.
 
-* You are provided with a function called `daily_normals` that will calculate the daily normals for a specific date. This date string will be in the format `%m-%d`. Be sure to use all historic TOBS that match that date string.
+* Used a function called `daily_normals` that will calculate the daily normals for a specific date. This date string will be in the format `%m-%d`. Making sure to use all historic TOBS that match that date string.
 
-* Create a list of dates for your trip in the format `%m-%d`. Use the `daily_normals` function to calculate the normals for each date string and append the results to a list.
+* Create a list of dates for the trip in the format `%m-%d`. Use the `daily_normals` function to calculate the normals for each date string and append the results to a list.
 
 * Load the list of daily normals into a Pandas DataFrame and set the index equal to the date.
 
@@ -153,6 +144,6 @@ Now that you have completed your initial analysis, design a Flask API based on t
 
   ![daily-normals](Images/daily-normals.png)
 
-### Copyright
 
-Trilogy Education Services © 2019. All Rights Reserved.
+
+
