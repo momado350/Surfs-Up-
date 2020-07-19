@@ -2,7 +2,7 @@
 
 #  Project requirement
 Before I start the Project I did the Following:
-1. Created a new repository for this project called `sqlalchemy-challenge`. 
+1. Created a new repository for this project called `surf_ups`. 
 
 2. Cloned the new repository to my local computer.
 
